@@ -38,4 +38,4 @@ def add(string):
                 sum += num
 
         return sum
-# print(add("1"))
+# print(add("1,1"))
