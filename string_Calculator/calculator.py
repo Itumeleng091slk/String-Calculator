@@ -24,7 +24,7 @@ def add(string):
     except:
         raise "This is not ok!"
     if negatives:
-        raise Exception("Negatives are not allowed: " + negatives)
+        raise Exception("Negatives are not allowed: " + negatives) # This exception is telling the program that if there is any negative numbers within the program that an error/ exception will be thrown.
 
     if string == '':
         return 0
