@@ -32,7 +32,7 @@ def test_check_negatives():
         assert add("//;\n-1;2,-3")
         assert str(err.value) == "Negatives not allowed: -1,-3,"    
 
-# Test if any number bigger than 1000 will be ignored
+# Test if any number bigger than 20 will be ignored
 def test_more_than_twenty():
     assert add("//;\n1;2,21") == 3
 
