@@ -41,6 +41,6 @@ def test_delimeter_len():
     assert add("//[***]\n1***2***3") == 6
 
 
-# Tests if it can allow multiple delimeters
+# Tests  multiple delimeters
 def test_multiple_delimeters():
     assert add("//[*][%]\n1*2%3") == 6
