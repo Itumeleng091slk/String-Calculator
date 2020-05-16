@@ -12,7 +12,17 @@ def has_negatives(string):
     return empty_string
 
 def add(string):
-    sum = 0
+      delimiter = ',' # handles delimiters in the code
+
+    if string.startswith('//'):
+        delimiter = string[2] 
+        string = string[3:]
+
+    string = string.replace('\n',',') 
+    # string_num = string.spilt(delimiter)
+    
+    
+    sum = []
     numbers = regex.findall(string) # this line is telling the program to find all the regular expressions
     negatives = has_negatives(string)
         
@@ -35,4 +45,6 @@ def add(string):
                 sum += num
 
         return sum
+    
+#print(add("//;\n31;2"))
 # print(add("1,1"))
