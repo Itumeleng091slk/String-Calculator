@@ -12,7 +12,7 @@ def has_negatives(string):
     return empty_string
 
 def add(string):
-      delimiter = ',' # handles delimiters in the code
+      delimiter = ',' # handles multiple delimiters 
 
     if string.startswith('//'):
         delimiter = string[2] 
