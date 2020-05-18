@@ -8,7 +8,6 @@ def has_negatives(string):
     for x in range(len(string)):
         if string[x] == '-' and string[x+1].isdecimal():
             empty_string += '-' + string[x+1] + ','
-
     return empty_string
 
 def add(string):
@@ -18,10 +17,8 @@ def add(string):
         delimiter = string[2] 
         string = string[3:]
 
-    string = string.replace('\n',',') 
-    # string_num = string.spilt(delimiter)
-    
-    
+    string = string.replace('\n',',') # string_num = string.spilt(delimiter)
+     
     sum = []
     numbers = regex.findall(string) # this line is telling the program to find all the regular expressions
     negatives = has_negatives(string)
