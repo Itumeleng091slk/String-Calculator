@@ -17,7 +17,7 @@ def add(string):
         delimiter = string[2] 
         string = string[3:]
 
-    string = string.replace('\n',',') # string_num = string.spilt(delimiter)
+    string = string.replace('\n',',') 
      
     sum = []
     numbers = regex.findall(string) # this line is telling the program to find all the regular expressions
