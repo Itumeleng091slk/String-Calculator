@@ -11,11 +11,11 @@ class StringCalculator():
     def __init__(self,numbers):
         self.numbers = numbers
     
-    def add(self, selfnumbers):
-        if len(numbers) == 0:
+    def add(self, self.numbers):
+        if len(self.numbers) == 0:
             return 0
         else:
-            string_values = re.findall(r"\d+|-\d+", numbers)
+            string_values = re.findall(r"\d+|-\d+", self.numbers)
             print(string_values)
             total = 0
             negatives = []
