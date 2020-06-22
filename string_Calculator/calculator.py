@@ -1,47 +1,45 @@
 import re
+import logging
+import time
 
-regex = re.compile(r'\d+') # add one or more digits
+regex = re.compile(r'\d+') 
 
-def has_negatives(string):
-    empty_string = ''
+logging.basicConfig(filename = "string_Calculator/calculator.py", level=logging.DEBUG, format="%(asctime)s %(message)s")
+logger = logging.getLogger()
 
-    for x in range(len(string)):
-        if string[x] == '-' and string[x+1].isdecimal():
-            empty_string += '-' + string[x+1] + ','
-    return empty_string
-
-def add(string):
-      delimiter = ',' # handles multiple delimiters 
-
-    if string.startswith('//'):
-        delimiter = string[2] 
-        string = string[3:]
-
-    string = string.replace('\n',',') 
-     
-    sum = []
-    numbers = regex.findall(string) # this line is telling the program to find all the regular expressions
-    negatives = has_negatives(string)
-        
-    try:
-        string[:-1]
-    except:
-        raise Exception "This is invalid!" # Handles invalid inputs
-    if negatives:
-        raise Exception("Negatives are not allowed: " + negatives) # This exception is telling the program that if there is any negative numbers within the program that an error/ exception will be thrown.
-
-    if string == '':
-        return 0
-    else:
-        for x in numbers:
-
-            if int(x) > 20:
-                pass
-            else:
-                num = int(x)
-                sum += num
-
-        return sum
+class StringCalculator():
+    def __init__(self,numbers):
+        self.numbers = numbers
     
-#print(add("//;\n31;2"))
-# print(add("1,1"))
+    def add(self, selfnumbers):
+        if len(numbers) == 0:
+            return 0
+        else:
+            string_values = re.findall(r"\d+|-\d+", numbers)
+            print(string_values)
+            total = 0
+            negatives = []
+            for i in range(len(string_values)):
+                if int(string_values[i]) < 0:
+                    logger.info("A negative number: " + string_values[i] + " was found")
+                    negatives.append(string_values[i])
+                    continue
+                if int(string_values[i]) <= 1000:
+                    total += int(string_values[i])
+            if len(negatives) == 0:
+                return total
+            else:
+                negative_values_string = ""
+                for i in range(len(negatives)):
+                    if i != len(negatives) - 1:
+                        negative_values_string += negatives[i] + ","
+                    else:
+                        negative_values_string += negatives[i]
+                raise Exception("negatives not allowed " + negative_values_string)
+
+
+def main():
+    calculator = StringCalculator()
+    print(calculator.add("//4\n142"))
+if __name__ == '__main__':
+    main()
