@@ -1,45 +1,32 @@
 import re
-import logging
-import time
-
-regex = re.compile(r'\d+') 
-
-logging.basicConfig(filename = "string_Calculator/calculator.py", level=logging.DEBUG, format="%(asctime)s %(message)s")
-logger = logging.getLogger()
-
-class StringCalculator():
-    def __init__(self,numbers):
-        self.numbers = numbers
-    
-    def add(self, self.numbers):
-        if len(self.numbers) == 0:
-            return 0
-        else:
-            string_values = re.findall(r"\d+|-\d+", self.numbers)
-            print(string_values)
-            total = 0
-            negatives = []
-            for i in range(len(string_values)):
-                if int(string_values[i]) < 0:
-                    logger.info("A negative number: " + string_values[i] + " was found")
-                    negatives.append(string_values[i])
-                    continue
-                if int(string_values[i]) <= 1000:
-                    total += int(string_values[i])
-            if len(negatives) == 0:
-                return total
-            else:
-                negative_values_string = ""
-                for i in range(len(negatives)):
-                    if i != len(negatives) - 1:
-                        negative_values_string += negatives[i] + ","
-                    else:
-                        negative_values_string += negatives[i]
-                raise Exception("negatives not allowed " + negative_values_string)
 
 
-def main():
-    calculator = StringCalculator()
-    print(calculator.add("//4\n142"))
-if __name__ == '__main__':
-    main()
+def add(string):
+    string = delimiters(string)
+    if string:
+        return add_numbers_into(string)
+    else:
+        return 0
+
+def delimiters(string):
+    string = multiple_delimiters(string)
+    string = string.replace('\n', ',')
+    return string
+
+def multiple_delimiters(string):
+    if string.startswith('//'):
+        delimiter_rule, string = string.split('\n', 1)
+        delimiter = delimiter_rule[2:]
+        string = string.replace(delimiter, ',')
+    return string
+
+def add_numbers_into(string):
+    numbers = map(int, string.split(','))
+    validate_numbers(numbers)
+    return sum(numbers)
+
+def validate_negative_numbers(numbers):
+    if any(number < 0 for number in numbers):
+        raise ValueError
+
+print(delimiters("//4\n142"))
