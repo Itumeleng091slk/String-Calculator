@@ -22,7 +22,7 @@ def multiple_delimiters(string):
 
 def add_numbers_into(string):
     numbers = map(int, string.split(','))
-    validate_numbers(numbers)
+    validate_negative_numbers(numbers)
     return sum(numbers)
 
 def validate_negative_numbers(numbers):
