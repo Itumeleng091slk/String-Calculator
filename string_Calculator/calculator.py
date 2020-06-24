@@ -26,8 +26,12 @@ def add_numbers_into(string):
     return sum(numbers)
 
 def validate_negative_numbers(numbers):
-    if any(number < 0 for number in numbers):
-        raise ValueError
+       while True:
+        try:
+            any(number < 0 for number in numbers)
+            break
+        except ValueError:
+            print("negatives are not allowed")
 
 print(delimiters("//4\n142"))
 print(add("//4\n142"))
