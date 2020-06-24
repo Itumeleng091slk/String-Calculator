@@ -30,3 +30,4 @@ def validate_negative_numbers(numbers):
         raise ValueError
 
 print(delimiters("//4\n142"))
+print(add("//4\n142"))
