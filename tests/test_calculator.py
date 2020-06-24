@@ -25,10 +25,9 @@ def test_diff_delimiters():
     assert add("//;\n1;2") == 3
 
 # Test if there are negatives and throw an error
-def test_check_negatives():
-    with pytest.raises(Exception) as err:
-        assert add("//;\n-1;2,-3")
-        assert str(err.value) == "Negatives not allowed: -1,-3,"    
+def rejects_negative_numbers():
+      assert raises(ValueError, add, '-1')
+      assert raises(ValueError, add, '1,-2')
 
 # Test if any number bigger than 20 will be ignored
 def test_more_than_twenty():
