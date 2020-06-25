@@ -39,4 +39,4 @@ def validate_negative_numbers(numbers):
             print("negatives are not allowed")
 
 print(delimiters("//4\n142"))
-print(add("//4\n142"))
+print(add("//;\n1;2"))
