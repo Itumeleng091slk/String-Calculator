@@ -1,54 +1,45 @@
-import sys
 import re
 
-regex = re.compile(r'\d+')
+def sum_function(num_list):
+	sum =0 
+	for numbers in num_list:
+		if numbers == '':
+			num = 0
+		else:
+			num = int(numbers)
+			if num < 0:
+				raise ValueError('Negatives are not allowed')
+			elif num >= 1000:
+				num = 0
+		sum += num
+	return sum
 
-def add(string):
-    sum = 0
-    numbers = regex.findall(string)
-    negatives = calc_has_negatives(string)
-    delimiter = ","
-    if string.startswith('//'):
-        delimiter = string[2]
-        string = string[3:]
-    string = string.replace('\n',delimiter)
-    string_num = string.split(delimiter)
-    sum_of_number = []
-    negative_nums = []
-
-    for number in string_num:
-        try:
-            numbers = int(number)
-            if int(number) < 0:
-                negative_nums.append(numbers)
-        except ValueError:
-            numbers = 0
-        sum_of_number.append(numbers)
-        
-    if negative_nums:
-        message = ','.join([str(numbers) for numbers in negative_nums])
-        raise Exception('Negatives not allowed'+ message)
-    return sum    
-
-       
-def calc_has_negatives(string):
+def has_negatives(string):
     empty_string = ''
-    for x in range(len(string)):
-        if string[x] == '-' and string[x+1].isdecimal():
-            empty_string += '-' + string[x+1] + ','
+    for numbers in range(len(string)):
+        if string[number] == '-' and string[number+1]:
+            empty_string += '-' + string[number+1] + ','
     return empty_string
 
-def multiple_delimiters(string):
-    if string.startswith('//'):
-        delimiter_rule, string_multi = string.split('\n', 1)
-        delimiter = delimiter_rule[2:]
-        string = string.replace(delimiter, ',')
-    return string
-
-def add_numbers_into(string):
-    numbers = map(int, string.split(','))
-    add(numbers)
-    return sum(numbers)
-
-
-print(add("-1,-2,3,4"))
+def add_function(number:str) -> int:
+	find_regex = re.search('^//(.*)', number)
+	if number == '':
+		num_list = []
+	elif '[' in number:
+		count_space = 0
+		for numbers in number:
+			if numbers == '[':
+				count_space += 1
+		delims = r'\[(.*)]' * count_space
+		search_regex = re.search(f'^//{delims}+', number)
+		if search_regex:
+			delim = ''
+			for numbers in range(count_space):
+				delim += search_regex.groups()[numbers]
+			num_list =  re.split(r'['+delim+r'\n\]//[]', number[(4) + len(delim):])
+	elif find_regex:
+		delim = find_regex.groups()[0]
+		num_list = re.split(r'['+delim+'\n]', number[(3) + len(delim):])
+	else:
+		num_list = re.split('[,\n]', number)
+	return sum_function(num_list)
