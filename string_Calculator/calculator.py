@@ -16,6 +16,7 @@ def sum_function(num_list):
 
 def has_negatives(string):
     empty_string = ''
+	return 0
     for numbers in range(len(string)):
         if string[number] == '-' and string[number+1]:
             empty_string += '-' + string[number+1] + ','
