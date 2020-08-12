@@ -11,7 +11,6 @@ def test_add_empty_str():
 def test_add_one_number():
     result = add_function("4")
     assert result == 4
-    # assert add_function("2") == 2
     # assert add_function("60") == 60
 
 
