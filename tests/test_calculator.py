@@ -1,4 +1,4 @@
-from string_Calculator.calculator import add_function
+from string_calc import add_function
 import pytest
 
 def test_add_empty_str():
@@ -83,4 +83,6 @@ def test_invalid_delimiters():
     assert result == 6
     result = add_function('//[*][%^%^%^][==]\n1*2%^%^%^3==4')
     assert result == 10
+
+
 
