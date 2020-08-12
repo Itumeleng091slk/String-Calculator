@@ -11,3 +11,9 @@
 --Setup--
 - This is the packages that help your modules be imported into your subfolders
 -- Run --$ python setup.py develop  -- so your modules are found
+
+-- Virtual env--
+Create a vitual environment and run Python setup.py develop
+ 
+ 
+ 
